@@ -9,12 +9,12 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
     }
 
     body {
       height: 100vh;
-      background-image: url("bg.JPG"); /* make sure name matches exactly */
+      background-image: url("bg.JPG"); /* must match filename exactly */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -26,61 +26,88 @@
     }
 
     .container {
-      background: rgba(0, 0, 0, 0.5);
-      padding: 40px;
-      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.55);
+      padding: 45px;
+      border-radius: 25px;
       text-align: center;
-      min-width: 320px;
+      min-width: 340px;
       z-index: 2;
     }
 
     h1 {
       color: white;
-      font-size: 36px;
-      margin-bottom: 30px;
+      font-size: 38px;
+      margin-bottom: 35px;
     }
 
     h2 {
       color: white;
-      font-size: 40px;
+      font-size: 42px;
       margin-top: 20px;
       display: none;
+      animation: pop 0.8s ease forwards;
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      70% {
+        transform: scale(1.15);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .buttons {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 30px;
+      gap: 35px;
       position: relative;
     }
 
     button {
-      padding: 15px 35px;
-      font-size: 18px;
+      padding: 14px 38px;
+      font-size: 20px;
+      font-weight: bold;
       border: none;
-      border-radius: 30px;
+      border-radius: 45px;
       cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    button:hover {
+      transform: scale(1.1);
     }
 
     #yes {
-      background-color: #28a745;
+      background: linear-gradient(135deg, #ff4e8a, #ff2e63);
       color: white;
     }
 
+    #yes:hover {
+      box-shadow: 0 12px 25px rgba(255, 46, 99, 0.6);
+    }
+
     #no {
-      background-color: #dc3545;
+      background: linear-gradient(135deg, #555, #333);
       color: white;
       position: relative;
     }
 
-    /* HEARTS */
+    /* Floating hearts */
     .heart {
       position: fixed;
       bottom: -20px;
-      font-size: 20px;
+      font-size: 18px;
       animation: floatUp 5s linear forwards;
       opacity: 0.8;
+      pointer-events: none;
     }
 
     @keyframes floatUp {
@@ -105,14 +132,14 @@
       <button id="no" onmouseover="moveNo()">No</button>
     </div>
 
-    <!-- AFTER YES MESSAGE -->
+    <!-- After YES -->
     <h2 id="message">Yayyy ❤️</h2>
   </div>
 
   <script>
     function moveNo() {
       const noBtn = document.getElementById("no");
-      const x = Math.floor(Math.random() * 200) - 100;
+      const x = Math.floor(Math.random() * 240) - 120;
       const y = Math.floor(Math.random() * 200) - 100;
       noBtn.style.transform = `translate(${x}px, ${y}px)`;
     }
@@ -124,17 +151,15 @@
       const msg = document.getElementById("message");
       msg.style.display = "block";
 
-      // start hearts
-      setInterval(createHeart, 400);
+      setInterval(createHeart, 450);
     }
 
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
       heart.innerHTML = "❤️";
-
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      heart.style.fontSize = Math.random() * 20 + 14 + "px";
 
       document.body.appendChild(heart);
 
