@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Will You Be My Valentine?</title>
+  <title>Hellooo Sweetyyy.... Will You Be My Valentine?</title>
 
   <style>
     * {
@@ -14,7 +14,7 @@
 
     body {
       height: 100vh;
-      background-image: url("bg.JPG"); /* must match filename exactly */
+      background-image: url("bg.JPG"); /* must match filename */
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -45,20 +45,21 @@
       font-size: 42px;
       margin-top: 20px;
       display: none;
-      animation: pop 0.8s ease forwards;
+      animation: slowPop 1.8s ease forwards;
     }
 
-    @keyframes pop {
+    /* Slow romantic animation */
+    @keyframes slowPop {
       0% {
-        transform: scale(0.5);
+        transform: scale(0.6);
         opacity: 0;
       }
-      70% {
-        transform: scale(1.15);
+      60% {
+        transform: scale(1.1);
+        opacity: 1;
       }
       100% {
         transform: scale(1);
-        opacity: 1;
       }
     }
 
@@ -132,8 +133,8 @@
       <button id="no" onmouseover="moveNo()">No</button>
     </div>
 
-    <!-- After YES -->
-    <h2 id="message">Yayyy ❤️</h2>
+    <!-- AFTER YES (ADD NAME HERE) -->
+    <h2 id="message">Yayyy ❤️ Tamaa</h2>
   </div>
 
   <script>
