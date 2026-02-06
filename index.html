@@ -12,21 +12,22 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
       font-family: Arial, sans-serif;
+      background: url("bg.jpg") no-repeat center center/cover;
       overflow: hidden;
     }
 
-    .container {
-      text-align: center;
-      background: white;
+    .overlay {
+      background: rgba(255, 255, 255, 0.85);
       padding: 40px;
       border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: fadeIn 1.5s ease;
     }
 
     h1 {
-      color: #d81b60;
+      color: #c2185b;
       margin-bottom: 30px;
     }
 
@@ -49,19 +50,48 @@
       color: white;
       position: absolute;
     }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0.3);
+        opacity: 0;
+      }
+      70% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <h1>Will you be my Valentine? 💖</h1>
+  <div class="overlay">
+    <h1>Will you be my Valentine, <span id="name"></span>? 💖</h1>
     <button id="yes">Yes 💘</button>
     <button id="no">No 💔</button>
   </div>
 
   <script>
+    // 👉 ADD NAME HERE
+    const valentineName = "ADD NAME HERE";
+
+    document.getElementById("name").innerText = valentineName;
+
     const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
 
     function moveNoButton() {
       const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
@@ -73,18 +103,19 @@
     noBtn.addEventListener("mouseover", moveNoButton);
     noBtn.addEventListener("touchstart", moveNoButton);
 
-    yesBtn.addEventListener("click", () => {
+    document.getElementById("yes").addEventListener("click", () => {
       document.body.innerHTML = `
         <div style="
           height:100vh;
           display:flex;
           justify-content:center;
           align-items:center;
-          background:#ffebee;
+          background:rgba(0,0,0,0.6);
+          color:white;
           font-family:Arial;
           text-align:center;">
-          <h1 style="color:#c2185b;">
-            Yayyy! 💕🥰<br>
+          <h1 style="animation: pop 1s ease;">
+            Yayyy ${valentineName}! 💕🥰<br>
             Happy Valentine’s Day ❤️
           </h1>
         </div>
